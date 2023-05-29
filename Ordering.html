@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Page</title>
+  <style>
+    /* CSS styles for the page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+      margin-top: 30px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .product img {
+      width: 80px;
+      height: 80px;
+      margin-right: 10px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .product-desc {
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .product-price {
+      color: #333;
+      margin-top: 5px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+	        .navigation-bar {
+            background-color: #808080;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .navigation-bar a {
+            color: #000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .navigation-bar a:hover {
+            text-decoration: underline;
+        }
+  </style>
+  <script>
+    function submitOrder() {
+      var selectedProducts = document.querySelectorAll('input[type="checkbox"]:checked');
+      var totalAmount = 0;
+      var orderSummary = "Order Summary:\n";
+
+      if (selectedProducts.length === 0) {
+        alert("Please select at least one product.");
+        return false;
+      }
+
+      selectedProducts.forEach(function(checkbox) {
+        var productDiv = checkbox.parentElement;
+        var productName = productDiv.querySelector('.product-name').textContent;
+        var productPrice = parseFloat(productDiv.querySelector('.product-price').textContent.replace(/[^0-9.]/g, ''));
+        totalAmount += productPrice;
+        orderSummary += productName + " - ₱" + productPrice.toFixed(2) + "\n";
+      });
+
+      orderSummary += "Total Amount: ₱" + totalAmount.toFixed(2);
+
+      alert("Order placed!\n\n" + orderSummary);
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h1>Order Page</h1>
+     <div class="navigation-bar">
+        <a href="HomePage.html" class="button"> Home</a>
+        <a href="Gallery.html">Gallery</a>
+    </div>
+
+  <form onsubmit="return submitOrder()">
+    <h2>Products</h2>
+       <div class="product">
+      <img src="https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP856/airpods-3rdgen-2.png" alt="Airpods Gen 3">
+      <h3 class="product-name">Airpods Gen 3</h3>
+      <p class="product-desc">Wireless earbuds from Apple.</p>
+      <p class="product-price">Price: ₱10,990</p>
+      <input type="checkbox" name="products[]" value="airpods-gen-3">
+    </div>
+    <div class="product">
+      <img src="https://dl.razerzone.com/src/3828-1-EN-v1.png" alt="RAZER BlackWidow V3">
+      <h3 class="product-name">RAZER BlackWidow V3</h3>
+      <p class="product-desc">Mechanical gaming keyboard by RAZER.</p>
+      <p class="product-price">Price: ₱5,289.00</p>
+      <input type="checkbox" name="products[]" value="blackwidow-v3">
+    </div>
+    <div class="product">
+      <img src="https://assets.stickpng.com/images/61d4a70f8b51e20004664d4d.png" alt="iPad Pro">
+      <h3 class="product-name">iPad Pro</h3>
+      <p class="product-desc">Powerful tablet from Apple.</p>
+      <p class="product-price">Price: ₱55,990.00</p>
+      <input type="checkbox" name="products[]" value="ipad-pro">
+    </div>
+    <div class="product">
+      <img src="https://news.lenovo.com/wp-content/uploads/2020/07/Header-Image_resized.png" alt="Lenovo Legion Pro">
+      <h3 class="product-name">Lenovo Legion Pro</h3>
+      <p class="product-desc">Gaming smartphone by Lenovo.</p>
+      <p class="product-price">Price: ₱30,413</p>
+      <input type="checkbox" name="products[]" value="legion-pro">
+    </div>
+    <div class="product">
+      <img src="https://www.pngarts.com/files/4/Apple-Macbook-Pro-PNG-Image-Transparent-Background.png" alt="Apple Macbook Air M1 2020">
+      <h3 class="product-name">Apple Macbook Air M1 2020</h3>
+      <p class="product-desc">Lightweight and powerful laptop from Apple.</p>
+      <p class="product-price">Price: ₱46,890.00</p>
+      <input type="checkbox" name="products[]" value="macbook-air-m1-2020">
+    </div>
+    <div class="product">
+      <img src="https://media.gq.com/photos/606dd9fff74872e19957f6d9/master/w_1600%2Cc_limit/PP_5711_1A_014_AMB_fond_RVB.png" alt="Patek Philippe Nautilus">
+      <h3 class="product-name">Patek Philippe Nautilus</h3>
+      <p class="product-desc">Luxury Swiss watch.</p>
+      <p class="product-price">Price: ₱4,776,351</p>
+      <input type="checkbox" name="products[]" value="patek-philippe-nautilus">
+    </div>
+    <div class="product">
+      <img src="https://maingear.com/wp-content/uploads/r1ultkunai.png" alt="MAINGEAR - R1 Razer Chroma Compatible Gaming PC">
+      <h3 class="product-name">MAINGEAR - R1 Razer Chroma Compatible Gaming PC</h3>
+      <p class="product-desc">Powerful gaming PC by MAINGEAR.</p>
+      <p class="product-price">Price: ₱77,354</p>
+      <input type="checkbox" name="products[]" value="maingear-gaming-pc">
+    </div>
+    <div class="product">
+      <img src="https://press.razer.com/wp-content/uploads/2019/01/press.razer_.com_.png" alt="Razer Raptor 27">
+      <h3 class="product-name">Razer Raptor 27</h3>
+      <p class="product-desc">27-inch gaming monitor by Razer.</p>
+      <p class="product-price">Price: ₱36,766</p>
+      <input type="checkbox" name="products[]" value="razer-raptor-27">
+    </div>
+    <div class="product">
+      <img src="https://images.samsung.com/is/image/samsung/p6pim/ph/qa65qn85bagxxp/gallery/ph-qled-qn85b-qa65qn85bagxxp-532718833?$650_519_PNG$" alt="65&quot; Neo QLED 4K QN85B Smart TV">
+      <h3 class="product-name">65" Neo QLED 4K QN85B Smart TV</h3>
+      <p class="product-desc">Smart TV with 4K resolution.</p>
+      <p class="product-price">Price: ₱67,195</p>
+      <input type="checkbox" name="products[]" value="neo-qled-4k-smart-tv">
+    </div>
+    <div class="product">
+      <img src="https://assets.razerzone.com/eeimages/support/products/1617/1617_basilisk-v2.png" alt="Razer Basilisk x Hyperspeed">
+      <h3 class="product-name">Razer Basilisk x Hyperspeed</h3>
+      <p class="product-desc">Wired gaming mouse by Razer.</p>
+      <p class="product-price">Price: ₱3,365</p>
+      <input type="checkbox" name="products[]" value="razer-basilisk-hyperspeed">
+    </div>
+	
+	<h2>Customer Information</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required><br><br>
+
+    <input type="submit" value="Place Order" />
+  </form>
+</body>
+</html>
